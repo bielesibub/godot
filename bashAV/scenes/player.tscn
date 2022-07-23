@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/player.gd" type="Script" id=1]
 [ext_resource path="res://png-transparent-metal-silver-silver-textured-metal-silver-textured.png" type="Texture" id=2]
@@ -10,6 +10,9 @@ metallic_texture = ExtResource( 2 )
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.516513
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.690196, 0.0784314, 0.0784314, 1 )
 
 [node name="player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88565, 1.57177, 0 )
@@ -30,3 +33,9 @@ spring_length = 5.0
 [node name="Camera" type="Camera" parent="SpringArm"]
 transform = Transform( 1, 0, 0, 0, 0.830285, 0.557339, 0, -0.557339, 0.830285, 0, 1.31458, 3.40599 )
 fov = 72.6449
+
+[node name="gun" type="CSGPolygon" parent="."]
+material = SubResource( 3 )
+
+[node name="gunPosition" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00812197, 0, 0.984966 )
