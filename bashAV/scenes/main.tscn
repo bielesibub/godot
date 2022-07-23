@@ -1,16 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/inputController.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/main.gd" type="Script" id=2]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://green+grass.jpeg" type="Texture" id=4]
-
-[sub_resource type="PhysicsMaterial" id=1]
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_texture = ExtResource( 4 )
-
-[sub_resource type="BoxShape" id=3]
+[ext_resource path="res://scenes/triplanar-bobbins.tres" type="Material" id=4]
 
 [node name="main" type="Spatial"]
 script = ExtResource( 2 )
@@ -25,21 +18,20 @@ input_down = "look_down"
 input_left = "look_left"
 input_right = "look_right"
 
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
+
 [node name="player" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
+player = NodePath(".")
+_rotate_speed = 1
 
-[node name="ground" type="StaticBody" parent="."]
-transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
-physics_material_override = SubResource( 1 )
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+use_collision = true
 
-[node name="CSGBox" type="CSGBox" parent="ground"]
-transform = Transform( 0.01, 0, 0, 0, 1, 0, 0, 0, 0.01, 0, 0, 0 )
-width = 50.0
-height = 0.5
-depth = 50.0
-material = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="ground"]
-shape = SubResource( 3 )
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+material = ExtResource( 4 )
 
 [connection signal="playerMove" from="inputController/leftStick" to="." method="_on_leftStick_playerMove"]
 [connection signal="playerMove" from="inputController/leftStick" to="player" method="_on_leftStick_playerMove"]
