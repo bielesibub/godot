@@ -32,6 +32,7 @@ func _physics_process(delta):
 #	pass
 func move_player(dir, delta):
 	var local_direction = dir.rotated(Vector3.UP, rotation.y).normalized()
+	$adam.translation = local_direction #Vector3(dir.z * -1, 0, dir.x)#dir.rotated(Vector3(0,1,0), rotation.z)
 	
 	velocity.y = gravity.y * gravity_strength
 	velocity.z = local_direction.z * walk_speed
@@ -49,7 +50,9 @@ func _on_rightStick_playerMove(dir):
 	#probably want to do something with this
 	#rotation -= Vector3(0, dir.x * (_player_delta * _rotate_speed), 0)
 	#$gun.rotation = dir.rotated(Vector3(0,1,0), rotation.z) #rotation.y #dir.x #- rotation.x #Vector3(0, dir.x, 0)
+	var local_direction = dir.rotated(Vector3.UP, rotation.y).normalized()
+	$gunPosition.translation = local_direction #Vector3(dir.z * -1, 0, dir.x)#dir.rotated(Vector3(0,1,0), rotation.z)
 	
-	$gunPosition.translation = Vector3(dir.z * -1,0,dir.x)#dir.rotated(Vector3(0,1,0), rotation.z)
+	#$gunPosition.translation = Vector3(dir.z * -1, 0, dir.x)#dir.rotated(Vector3(0,1,0), rotation.z)
 	
 	pass # Replace with function body.

@@ -95,7 +95,7 @@ mesh = SubResource( 6 )
 material/0 = null
 
 [node name="mainCamera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1, 33, 1 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1, 28, 1 )
 current = true
 
 [connection signal="playerMove" from="inputController/leftStick" to="player" method="_on_leftStick_playerMove"]
