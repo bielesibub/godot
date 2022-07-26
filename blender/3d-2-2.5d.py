@@ -1,5 +1,12 @@
 # thanks -  https://clintbellanger.net/articles/isometric_tiles/
 #           https://www.youtube.com/watch?v=vIKJ1AqfI0Q
+#           https://www.youtube.com/watch?v=g81mqJhBZ7I (add weapon)
+
+# to make sprite transparent film -> check transparent 
+# move weapon into place (shift + mouse to pan, 7 top view, 0,0,0 position to make things a bit easy for aligning)
+# add bone to weapon, (ADD > armature) move into place (if you cant see it, set pos to 0,0,0) select bone then object (CTRL + P) select object
+# now select armature of weapon, click object constraints -> Add Object Constraint -> Child Of 
+# :: Target -> to armature of character then add bone (the one closest to where the weapon should be held)
 
 # 3d to 2.5d blender script
 
@@ -12,7 +19,8 @@
 import bpy
 from math import radians
 
-angle = -45
+directions = 1 # number of directions the character can move in
+angle = (360 / directions) * -1 #-45
 axis = 2 # z-axis
 
 resolution_x = 640
@@ -26,7 +34,7 @@ platform = bpy.data.collections["RenderPlatform"]
 
 original_path = bpy.data.scenes[0].render.filepath
 
-for i in range(0,1):
+for i in range(0,directions):
 
     # rotate the render platform and all children
     temp_rot = platform.objects["Armature"].rotation_euler
