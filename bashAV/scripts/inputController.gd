@@ -31,7 +31,7 @@ func _physics_process(delta):
 	var axisUD = -Input.get_action_strength(input_up) + Input.get_action_strength(input_down)
 	var axisLR = -Input.get_action_strength(input_left) + Input.get_action_strength(input_right)
 
-	emit_signal("playerMove", Vector3( axisLR, 0, axisUD))
+	emit_signal("playerMove", Vector2( axisLR, axisUD))
 	
 	var xAxisRL = Input.get_joy_axis(0, JOY_AXIS_2)
 	var yAxisUD = Input.get_joy_axis(0, JOY_AXIS_3)
